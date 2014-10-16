@@ -2,15 +2,16 @@ scriptId = 'com.kraken.SwitcherApp'
 
 -- Effects
 
-function forward()
-    myo.keyboard("tab", "press", "command")
+function openTab()
+    myo.keyboard("tab", "down", "command")
 end
 
--- Burst forward or backward depending on the value of shuttleDirection.
-function shuttleBurst()
-    if shuttleDirection == "forward" then
-        forward()
-    end
+function forward()
+    myo.keyboard("tab", "press")
+end
+
+function backward()
+    myo.keyboard("tab", "press", "shift")
 end
 
 -- Helpers
@@ -58,33 +59,37 @@ function onPoseEdge(pose, edge)
     end
 
     -- Forward/backward and shuttle.
-    if pose == "waveIn" or pose == "waveOut" then
+    if pose == "fingersSpread" then
         local now = myo.getTimeMilliseconds()
 
         if unlocked and edge == "on" then
             -- Deal with direction and arm.
             pose = conditionallySwapWave(pose)
 
-            -- Determine direction based on the pose.
-            if pose == "waveIn" then
-                shuttleDirection = "backward"
+            openTab()
+
+            -- Initial burst and vibrate
+            myo.vibrate("short")
+
+            extendUnlock()
+        end
+    end
+    if pose == "waveOut" or pose == "waveIn" then
+        local now = myo.getTimeMilliseconds()
+
+        if unlocked and edge == "on" then
+            -- Deal with direction and arm.
+            pose = conditionallySwapWave(pose)
+            if pose == "waveOut" then 
+                forward()
             else
-                shuttleDirection = "forward"
+                backward()
             end
 
             -- Initial burst and vibrate
             myo.vibrate("short")
-            shuttleBurst()
 
-            -- Set up shuttle behaviour. Start with the longer timeout for the initial
-            -- delay.
-            shuttleSince = now
-            shuttleTimeout = SHUTTLE_CONTINUOUS_TIMEOUT
             extendUnlock()
-        end
-        -- If we're no longer making wave in or wave out, stop shuttle behaviour.
-        if edge == "off" then
-            shuttleTimeout = nil
         end
     end
 end
