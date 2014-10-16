@@ -80,8 +80,6 @@ function onPoseEdge(pose, edge)
         local now = myo.getTimeMilliseconds()
 
         if unlocked and edge == "on" then
-            -- Deal with direction and arm.
-            pose = conditionallySwapWave(pose)
 
             openTab1()
             openTab2()
@@ -122,7 +120,6 @@ function onPoseEdge(pose, edge)
     if pose == "fist" then
         if unlocked and edge == "on" then
             enter()
-            extendUnlock()
         end
     end
 end
