@@ -3,7 +3,7 @@ scriptId = 'com.kraken.SwitcherApp'
 -- Effects
 
 function openTab()
-    myo.mouse("button_4", "click")
+    myo.controlMouse(enabled)
 end
 
 function closeTab()
