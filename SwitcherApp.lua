@@ -5,7 +5,7 @@ MC_OPEN = false
 
 function openMC()
     myo.keyboard("up_arrow", "press", "control")
-    if MC_OPEN == false
+    if MC_OPEN == false then
         MC_OPEN = true;
         myo.controlMouse(true)
     else
