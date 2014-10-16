@@ -1,13 +1,17 @@
 scriptId = 'com.kraken.SwitcherApp'
 
 -- Effects
+MC_OPEN = false
 
-function openTab()
+function openMC()
     myo.keyboard("up_arrow", "press", "control")
-end
-
-function closeTab()
---    myo.keyboard("tab","up")
+    if MC_OPEN == false
+        MC_OPEN = true;
+        myo.controlMouse(true)
+    else
+        MC_OPEN = false
+        myo.controlMouse(false)
+    end
 end
 
 function forward()
@@ -19,7 +23,8 @@ function backward()
 end
 
 function enter()
-    myo.keyboard("down_arrow", "press", "control")
+    myo.mouse("left", "click")
+    myo.controlMouse(false)
 end
 
 -- Burst forward or backward depending on the value of shuttleDirection.
@@ -78,14 +83,9 @@ function onPoseEdge(pose, edge)
     -- Forward/backward and shuttle.
     if pose == "fingersSpread" then
         local now = myo.getTimeMilliseconds()
-
         if unlocked and edge == "on" then
-
             openTab()
-
-            -- Initial burst and vibrate
             myo.vibrate("short")
-
             extendUnlock()
         end
         if unlocked and edge == "off" then
