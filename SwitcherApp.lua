@@ -6,6 +6,10 @@ function openTab()
     myo.keyboard("tab", "down", "command")
 end
 
+function closeTab()
+    myo.keyboard("tab","up")
+end
+
 function forward()
     myo.keyboard("tab", "press")
 end
@@ -83,6 +87,9 @@ function onPoseEdge(pose, edge)
             myo.vibrate("short")
 
             extendUnlock()
+        end
+        if unlocked and edge == "off" then
+            closeTab()
         end
     end
     if pose == "waveOut" or pose == "waveIn" then
