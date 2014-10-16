@@ -3,7 +3,7 @@ scriptId = 'com.kraken.SwitcherApp'
 -- Effects
 
 function openTab()
-    myo.keyboard("command_left", "down")
+    myo.keyboard("left_command", "down")
     myo.keyboard("tab", "press")
 end
 
