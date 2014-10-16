@@ -2,19 +2,15 @@ scriptId = 'com.kraken.SwitcherApp'
 
 -- Effects
 
-function openTab1()
-    myo.keyboard("left_command", "down")
-end
-
-function openTab2()
-    myo.keyboard("tab", "press")
+function openTab()
+    myo.keyboard("tab", "down", "command")
 end
 
 function forward()
     myo.keyboard("tab", "press")
 end
 
-function backward()
+function backward()     
     myo.keyboard("tab", "press", "shift")
 end
 
@@ -81,8 +77,7 @@ function onPoseEdge(pose, edge)
 
         if unlocked and edge == "on" then
 
-            openTab1()
-            openTab2()
+            openTab()
 
             -- Initial burst and vibrate
             myo.vibrate("short")
