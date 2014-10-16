@@ -4,7 +4,6 @@ scriptId = 'com.kraken.SwitcherApp'
 
 function openTab()
     myo.keyboard("tab", "down", "command")
-    myo.keyboard("tab", "up")
 end
 
 function forward()
