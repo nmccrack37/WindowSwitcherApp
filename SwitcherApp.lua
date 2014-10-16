@@ -11,11 +11,11 @@ function closeTab()
 end
 
 function forward()
-    myo.keyboard("tab", "press")
+    myo.keyboard("right_arrow", "press", "control")
 end
 
 function backward()     
-    myo.keyboard("tab", "press", "shift")
+    myo.keyboard("left_arrow", "press", "control")
 end
 
 function enter()
