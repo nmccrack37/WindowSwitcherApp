@@ -8,7 +8,6 @@ function openTab()
 end
 
 function closeTab()
-    myo.keyboard("left_command", "down")
     myo.keyboard("tab","up")
 end
 
