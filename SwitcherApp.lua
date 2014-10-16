@@ -14,6 +14,19 @@ function backward()
     myo.keyboard("tab", "press", "shift")
 end
 
+function enter()
+    myo.keyboard("enter", "press")
+end
+
+-- Burst forward or backward depending on the value of shuttleDirection.
+function shuttleBurst()
+    if shuttleDirection == "forward" then
+        forward()
+    elseif shuttleDirection == "backward" then
+        backward()
+    end
+end
+
 -- Helpers
 
 -- Makes use of myo.getArm() to swap wave out and wave in when the armband is being worn on
@@ -88,8 +101,23 @@ function onPoseEdge(pose, edge)
 
             -- Initial burst and vibrate
             myo.vibrate("short")
+            shuttleBurst()
 
+            -- Set up shuttle behaviour. Start with the longer timeout for the initial
+            -- delay.
+            shuttleSince = now
+            shuttleTimeout = SHUTTLE_CONTINUOUS_TIMEOUT
             extendUnlock()
+        end
+        -- If we're no longer making wave in or wave out, stop shuttle behaviour.
+        if edge == "off" then
+            shuttleTimeout = nil
+        end
+    end
+    if pose == "fist" then
+        if unlocked and edge == "on" then
+            enter()
+            entendUnlock()
         end
     end
 end
