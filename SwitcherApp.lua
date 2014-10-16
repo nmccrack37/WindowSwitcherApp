@@ -3,7 +3,7 @@ scriptId = 'com.kraken.SwitcherApp'
 -- Effects
 
 function openTab()
-    myo.mouse("button_4", "click")
+    myo.keyboard("up_arrow", "press", "control")
 end
 
 function closeTab()
@@ -19,7 +19,7 @@ function backward()
 end
 
 function enter()
-    myo.keyboard("return", "press")
+    myo.keyboard("down_arrow", "press", "control")
 end
 
 -- Burst forward or backward depending on the value of shuttleDirection.
