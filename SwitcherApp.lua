@@ -6,7 +6,7 @@ function openTab1()
     myo.keyboard("left_command", "down")
 end
 
-function openTab2
+function openTab2()
     myo.keyboard("tab", "press")
 end
 
