@@ -84,12 +84,9 @@ function onPoseEdge(pose, edge)
     if pose == "fingersSpread" then
         local now = myo.getTimeMilliseconds()
         if unlocked and edge == "on" then
-            openTab()
+            openMC()
             myo.vibrate("short")
             extendUnlock()
-        end
-        if unlocked and edge == "off" then
-            closeTab()
         end
     end
     if pose == "waveOut" or pose == "waveIn" then
