@@ -117,7 +117,7 @@ function onPoseEdge(pose, edge)
     if pose == "fist" then
         if unlocked and edge == "on" then
             enter()
-            entendUnlock()
+            extendUnlock()
         end
     end
 end
