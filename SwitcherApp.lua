@@ -126,7 +126,7 @@ end
 -- All timeouts in milliseconds.
 
 -- Time since last activity before we lock
-UNLOCKED_TIMEOUT = 2200
+UNLOCKED_TIMEOUT = 5200
 
 -- Delay when holding wave left/right before switching to shuttle behaviour
 SHUTTLE_CONTINUOUS_TIMEOUT = 600
